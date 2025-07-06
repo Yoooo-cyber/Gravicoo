@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravico -Portfolio Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styles */
+        :root {
+            --primary: #A259FF;
+            --primary-light: #9F7AEA;
+            --text: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --bg-dark: #090924;
+            --bg-light: #1e1e3f;
+            --card-bg: rgba(30, 30, 63, 0.5);
+            --glass: rgba(255, 255, 255, 0.05);
+            --darker-bg: #0a0a0a;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at center, var(--bg-light), var(--bg-dark));
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #8a4be6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(162, 89, 255, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(162, 89, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .badge-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: rgba(30, 30, 63, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Typewriter Effect */
+        .typewriter-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typewriter {
+            display: inline-block;
+        }
+
+        .typewriter::after {
+            content: "|";
+            position: absolute;
+            right: -8px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(9, 9, 36, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 2;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .tech-badges {
+            margin-top: 30px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            color: var(--text);
+            transition: var(--transition);
+            font-size: 1.2rem;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(162, 89, 255, 0.5);
+        }
+
+        .social-icon::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            transition: var(--transition);
+        }
+
+        .social-icon:hover::after {
+            opacity: 1;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .illustration {
+            width: 100%;
+            max-width: 500px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* About Section */
+        #about {
+            position: relative;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-pic {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--card-bg);
+            box-shadow: 0 0 30px rgba(162, 89, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .profile-pic:hover {
+            box-shadow: 0 0 50px rgba(162, 89, 255, 0.5);
+        }
+
+        .quote {
+            font-style: italic;
+            padding: 20px;
+            border-left: 3px solid var(--primary);
+            background-color: var(--card-bg);
+            border-radius: 0 10px 10px 0;
+            margin: 30px 0;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            position: relative;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-tabs {
+            display: flex;
+            gap: 10px;
+            background-color: var(--card-bg);
+            padding: 5px;
+            border-radius: 50px;
+        }
+
+        .tab {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab.active {
+            background-color: var(--primary);
+        }
+
+        .portfolio-section {
+            display: none;
+        }
+
+        .portfolio-section.active {
+            display: block;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            color: var(--primary-light);
+        }
+
+        /* Certificates Section */
+        .certificate-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background-color: var(--darker-bg);
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .certificate-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .certificate-issuer {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        /* Tech Stack Section */
+        .tech-stack-category {
+            margin-bottom: 30px;
+        }
+
+        .tech-stack-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tech-stack-item {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .tech-stack-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tech-stack-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        #contact {
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-panel {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--darker-bg);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(162, 89, 255, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .social-connections {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 12px 15px;
+            border-radius: 8px;
+            background-color: var(--darker-bg);
+            transition: var(--transition);
+        }
+
+        .social-item:hover {
+            background-color: rgba(162, 89, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .social-icon-large {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .social-text {
+            flex: 1;
+        }
+
+        .social-text span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .comments-list {
+            margin-top: 2rem;
+        }
+
+        .comment {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            background-color: var(--darker-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .comment-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .comment-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        .comment-text {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .pinned-comment {
+            border-left: 3px solid var(--primary);
+            padding-left: 15px;
+            background-color: rgba(162, 89, 255, 0.05);
+        }
+
+        .file-upload {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .file-upload input {
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: var(--darker-bg);
+            border-radius: 8px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload-label:hover {
+            border-color: var(--primary);
+        }
+
+        .file-upload-icon {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .file-upload-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .hero-buttons,
+            .tech-badges,
+            .social-icons {
+                justify-content: center;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--bg-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="logo.png.jpg" class="logo">Gravico</a>
+            <ul class="nav-links">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#My Work">My Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge badge-outline">⚡ Ready to Innovate</div>
+                    <h1 class="hero-title">
+                        <span class="typewriter-container">
+                            <span id="typewriter-title" class="typewriter"></span>
+                        </span>
+                    </h1>
+                    <h2 class="hero-subtitle">Creative Technologist</h2>
+                    <p>Creating innovative, functional, and user-friendly digital solutions for the modern web.</p>
+
+                    <div class="tech-badges">
+                        <span class="tech-badge">Photoshop</span>
+                        <span class="tech-badge">After Effects</span>
+                        <span class="tech-badge">Premiere Pro</span>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="#My Work" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-outline">Contact Me</a>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="https://www.behance.net/kapilgiri" class="social-icon"><i
+                                class="fab fa-behance"></i></a>
+                        <a href="https://www.instagram.com/gravico_1316?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <img src="gg.gif" alt="Developer Illustration" class="illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="hidden">Hello, I'm Kapil Giree</h2>
+
+            <div class="about-content">
+                <div class="about-text hidden">
+                    <p>I'm a multidisciplinary creative with expertise in Grpahics Designing, motion graphics, and video
+                        editing. With over 2 years of experience in digital creation, I bring a unique combination of
+                        technical skills and artistic vision to every project.</p>
+
+                    <p>My background in computer science combined with my passion for visual storytelling allows me to
+                        create engaging digital experiences that are both technically robust and aesthetically pleasing.
+                    </p>
+
+                    <div class="quote">
+                        "Technology is my canvas, and code is my brush - I create digital experiences that inspire and
+                        engage."
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="cvv.pdf" class="btn btn-primary">Download CV</a>
+                        <a href="#portfolio" class="btn btn-outline">View My Work</a>
+                    </div>
+                </div>
+
+                <div class="about-image hidden">
+                    <img src="main.jpg" alt="Profile Picture" class="profile-pic">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="My Work">
+        <div class="container">
+            <div class="portfolio-header">
+                <h2 class="hidden">My Work</h2>
+
+                <div class="portfolio-tabs hidden">
+                    <div class="tab active" data-tab="projects">Graphics Design</div>
+                    <div class="tab" data-tab="certificates">Others</div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="portfolio-section active" id="projects-section">
+                <div class="portfolio-grid">
+                    <div class="project-card hidden">
+                        <img src="https://static.vecteezy.com/system/resources/previews/047/537/859/non_2x/delicious-burger-poster-template-for-restaurants-and-promotions-free-psd.png"
+                            alt="Project 1" class="project-image">
+                        <div class="project-info">
+                            <h3 class="project-title">Food Posters</h3>
+                            <p class="project-description">A vibrant food poster showcasing mouthwatering dishes with
+                                rich colors and tempting textures. It instantly grabs attention and stirs cravings with
+                                its bold design and appetizing visuals.</p>
+                            <a href="https://www.instagram.com/gravico_1316?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="project-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card hidden">
+                        <img src="con.jpg" alt="Project 2" class="project-image">
+                        <div class="project-info">
+                            <h3 class="project-title">For Consultacny</h3>
+                            <p class="project-description">A professional consultancy poster featuring clean design and
+                                confident messaging that builds trust. It highlights expert solutions, guiding clients
+                                toward success with clarity and impact.
+                            </p>
+                            <a href="https://www.instagram.com/gravico_1316?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="project-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card hidden">
+                        <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/187630471/original/7172653342914eaf9e57d022df3f804c45797e1e/do-photo-manipulation-with-extreme-satisfaction.jpg"
+                            alt="Project 3" class="project-image">
+                        <div class="project-info">
+                            <h3 class="project-title">Photo Manupulatiion</h3>
+                            <p class="project-description">A striking photo manipulation poster blending reality with
+                                imagination through surreal visuals and bold creativity. It captures attention
+                                instantly, showcasing the power of visual storytelling and artistic transformation.
+                            </p>
+                            <a href="https://www.instagram.com/gravico_1316?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="project-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card hidden">
+                        <img src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/160793270/original/e97fe4ad857fa7345d870b64ba5e25296edab299/make-a-advertisement-poster-for-your-product.png"
+                            alt="Project 4" class="project-image">
+                        <div class="project-info">
+                            <h3 class="project-title">Tech Products</h3>
+                            <p class="project-description">A sleek tech product poster with a modern design that
+                                highlights innovation and cutting-edge features. It draws the viewer in with sharp
+                                visuals, futuristic elements, and a focus on performance and style.
+
+                            </p>
+                            <a href="https://www.instagram.com/gravico_1316?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="project-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Certificates Section -->
+            <div class="portfolio-section" id="certificates-section">
+                <div class="portfolio-grid">
+                    <div class="project-card hidden">
+                        <img src="https://i.ytimg.com/vi/RmH4gKSBJ5Y/maxresdefault.jpg" alt="Certificate 2"
+                            class="project-image">
+                        <div class="project-info">
+                            <h3 class="certificate-title">Motion Designign</h3>
+                            <p class="certificate-issuer">Creatates animated visuals & motion graphics for ads, films,
+                                and digital media using tools like After Effects. Combines design + movement to bring
+                                brands/stories to life.</p>
+                            <a href="https://www.instagram.com/gravico_1316?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="project-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card hidden">
+                        <img src="https://ueducate.pk/wp-content/uploads/2024/02/professional-video-edting-2-600x400.jpg"
+                            alt="Certificate 3" class="project-image">
+                        <div class="project-info">
+                            <h3 class="certificate-title">Video Editing</h3>
+                            <p class="certificate-issuer">Cuts, enhances & polishes raw footage into engaging videos
+                                using editing software. Adds effects, sound & color grading for films, ads & social
+                                media.</p>
+                            <a href="https://www.instagram.com/gravico_1316?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="project-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Contact Section -->
+            <section id="contact">
+                <div class="container">
+                    <h2 class="hidden">Get In Touch</h2>
+                    <p class="hidden">Feel free to reach out through the form or social media below</p>
+
+                    <div class="contact-grid">
+                        <!-- Left Panel - Contact Form -->
+                        <div class="contact-panel hidden">
+                            <h3>Contact Me</h3>
+                            <p>Have something to discuss? Send me a message and let's talk.</p>
+
+                            <form class="contact-form">
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" placeholder="Enter your name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Your Email</label>
+                                    <input type="email" id="email" placeholder="Enter your email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Your Message</label>
+                                    <textarea id="message" placeholder="Write your message here..." required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+
+                            <div class="social-connections">
+                                <h4>Connect With Me</h4>
+
+
+                                <a href="#" class="social-item">
+                                    <div class="social-icon-large">
+                                        <i class="fab fa-behance"></i>
+                                    </div>
+                                    <div class="social-text">
+                                        Behance
+                                        <span>View my designs</span>
+                                    </div>
+                                </a>
+
+
+                                <a href="#" class="social-item">
+                                    <div class="social-icon-large">
+                                        <i class="fab fa-instagram"></i>
+                                    </div>
+                                    <div class="social-text">
+                                        Instagram
+                                        <span>See my work</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel - Comments Section -->
+                        <div class="contact-panel hidden">
+                            <h3>Comments</h3>
+                            <p>Have a question? Send me a message and I'll reply as soon as possible.</p>
+
+                            <form class="comment-form">
+                                <div class="form-group">
+                                    <label for="comment-name">Name</label>
+                                    <input type="text" id="comment-name" placeholder="Enter your name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="comment-message">Message</label>
+                                    <textarea id="comment-message" placeholder="Write your message here..."
+                                        required></textarea>
+                                </div>
+
+
+
+                                <button type="submit" class="btn btn-primary">Post Comment</button>
+                            </form>
+
+                            <div class="comments-list">
+                                <!-- Pinned Comment -->
+                                <div class="comment pinned-comment">
+                                    <div class="comment-avatar">Gv</div>
+                                    <div class="comment-content">
+                                        <div class="comment-header">
+                                            <div class="comment-author">Gravico</div>
+                                            <div class="comment-time">2 days ago</div>
+                                            <div class="comment-badge">Admin</div>
+                                        </div>
+                                        <div class="comment-text">
+                                            Thanks for visiting my portfolio! I'm currently available for freelance
+                                            projects and collaborations. Feel free to reach out if you have any
+                                            questions or if you'd like to work together.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Comment 1 -->
+                                <div class="comment">
+                                    <div class="comment-avatar">JD</div>
+                                    <div class="comment-content">
+                                        <div class="comment-header">
+                                            <div class="comment-author">John Doe</div>
+                                            <div class="comment-time">1 week ago</div>
+                                        </div>
+                                        <div class="comment-text">
+                                            Amazing work on the project! The visuals really make stand out. How long did
+                                            it take you to develop this skill ?
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Comment 2 -->
+                                <div class="comment">
+                                    <div class="comment-avatar">SA</div>
+                                    <div class="comment-content">
+                                        <div class="comment-header">
+                                            <div class="comment-author">Sarah A.</div>
+                                            <div class="comment-time">2 weeks ago</div>
+                                        </div>
+                                        <div class="comment-text">
+                                            I love your motion graphics work! Do you offer video editing services for
+                                            YouTube channels? I'd love to discuss a potential collaboration.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                © 2025 Gravico™. All Rights Reserved.
+            </footer>
+
+            <script>
+                // Navbar scroll effect
+                const navbar = document.querySelector('.navbar');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+
+                // Mobile menu toggle
+                const hamburger = document.querySelector('.hamburger');
+                const navLinks = document.querySelector('.nav-links');
+
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking a link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+
+                // Scroll reveal animation
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('show');
+                        }
+                    });
+                });
+
+                const hiddenElements = document.querySelectorAll('.hidden');
+                hiddenElements.forEach(el => observer.observe(el));
+
+                // Active link highlighting
+                const sections = document.querySelectorAll('section');
+                const navItems = document.querySelectorAll('.nav-links a');
+
+                window.addEventListener('scroll', () => {
+                    let current = '';
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+
+                        if (pageYOffset >= sectionTop - 300) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === `#${current}`) {
+                            item.classList.add('active');
+                        }
+                    });
+                });
+
+                // Portfolio tabs functionality
+                const portfolioTabs = document.querySelectorAll('.tab');
+                const portfolioSections = document.querySelectorAll('.portfolio-section');
+
+                portfolioTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Remove active class from all tabs and sections
+                        portfolioTabs.forEach(t => t.classList.remove('active'));
+                        portfolioSections.forEach(s => s.classList.remove('active'));
+
+                        // Add active class to clicked tab and corresponding section
+                        tab.classList.add('active');
+                        const tabId = tab.getAttribute('data-tab');
+                        document.getElementById(`${tabId}-section`).classList.add('active');
+                    });
+                });
+
+                // Typewriter effect for full titles
+                const typewriterElement = document.getElementById('typewriter-title');
+                const professions = [
+                    'Video Editor',
+                    'Motion Designer',
+                    'Graphics Designer'
+                ];
+                let professionIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+                let isEnd = false;
+
+                function typeWriter() {
+                    const currentProfession = professions[professionIndex];
+
+                    if (isDeleting) {
+                        typewriterElement.textContent = currentProfession.substring(0, charIndex - 1);
+                        charIndex--;
+                    } else {
+                        typewriterElement.textContent = currentProfession.substring(0, charIndex + 1);
+                        charIndex++;
+                    }
+
+                    if (!isDeleting && charIndex === currentProfession.length) {
+                        isEnd = true;
+                        isDeleting = true;
+                        setTimeout(typeWriter, 2000); // Pause at end of word
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        professionIndex = (professionIndex + 1) % professions.length;
+                        setTimeout(typeWriter, 500); // Pause before typing next word
+                    } else {
+                        const typingSpeed = isDeleting ? 50 : 150;
+                        setTimeout(typeWriter, typingSpeed);
+                    }
+                }
+
+                // Start the typewriter effect
+                setTimeout(typeWriter, 1000);
+
+                // Simple form validation
+                document.querySelectorAll('form').forEach(form => {
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        // Get all required inputs
+                        const inputs = this.querySelectorAll('input[required], textarea[required]');
+                        let isValid = true;
+
+                        inputs.forEach(input => {
+                            if (!input.value.trim()) {
+                                input.style.borderColor = '#ff4757';
+                                isValid = false;
+                            } else {
+                                input.style.borderColor = '';
+                            }
+                        });
+
+                        if (isValid) {
+                            // In a real app, you would send the form data to a server here
+                            alert('Form submitted successfully!');
+                            this.reset();
+                        } else {
+                            alert('Please fill in all required fields.');
+                        }
+                    });
+                });
+
+                // File upload display
+                document.querySelectorAll('.file-upload input').forEach(input => {
+                    input.addEventListener('change', function () {
+                        const label = this.closest('.file-upload-label');
+                        const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+                        label.querySelector('.file-upload-text span').textContent = fileName;
+                    });
+                });
+            </script>
+</body>
+
+</html>
